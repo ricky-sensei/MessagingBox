@@ -68,6 +68,13 @@ def logout():
     logout_user()
     flash("ログアウトしました！")
     return redirect(url_for("index"))
+
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return redirect(url_for("login"))
+
+
 @app.route("/")
 @login_required
 def index():
